@@ -22,13 +22,10 @@ app = Flask(__name__)
 # ABSOLUTE PATH SETUP FOR LIVE SERVER
 # ==========================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
 # PROXY SETTINGS (TO BYPASS RENDER IP BAN)
 # ==========================================
-# यहाँ आप इंटरनेट से कोई भी फ्री प्रॉक्सी डाल सकते हैं।
-# उदाहरण: PROXY = "http://185.201.88.128:80"
 PROXY = "http://103.153.69.111:3128"
 
 # ==========================================
@@ -687,7 +684,7 @@ def download():
         
         ydl_opts = {
 
-            'format': 'bestaudio[ext=m4a]/bestaudio',
+            'format': 'bestaudio/best', # Simplified format to guarantee it finds audio
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
@@ -702,24 +699,19 @@ def download():
             
             'source_address': '0.0.0.0',
             
-            'cookiefile': COOKIE_FILE  # Absolute path for live server
+            'extractor_args': {
+                'youtube': {
+                    'player_client': ['android', 'ios', 'web'] # Ensures it doesn't get format-blocked
+                }
+            }
 
         }
 
     else:
 
-        if quality not in [
-            "720",
-            "480",
-            "360"
-        ]:
-
-            quality = "720"
-
-
         ydl_opts = {
 
-            'format': 'b[ext=mp4]/b/best',
+            'format': 'best', # Simplified format for best available video quality
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
@@ -733,10 +725,15 @@ def download():
             'noplaylist': True,
             
             'source_address': '0.0.0.0',
-            
-            'cookiefile': COOKIE_FILE  # Absolute path for live server
+
+            'extractor_args': {
+                'youtube': {
+                    'player_client': ['android', 'ios', 'web']
+                }
+            }
 
         }
+
 
     # ======================================
     # APPLY PROXY IF SET
