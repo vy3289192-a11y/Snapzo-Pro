@@ -22,7 +22,6 @@ app = Flask(__name__)
 # ABSOLUTE PATH SETUP FOR LIVE SERVER
 # ==========================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
 # DOWNLOAD FOLDER
@@ -679,24 +678,18 @@ def download():
     if is_audio:
         
         ydl_opts = {
-
             'format': 'bestaudio[ext=m4a]/bestaudio',
-
-            'outtmpl': os.path.join(
-                DOWNLOAD_FOLDER,
-                '%(title)s.%(ext)s'
-            ),
-
+            'outtmpl': os.path.join(DOWNLOAD_FOLDER, '%(title)s.%(ext)s'),
             'restrictfilenames': True,
-
             'quiet': True,
-
             'noplaylist': True,
-            
             'source_address': '0.0.0.0',
-            
-            'cookiefile': COOKIE_FILE  # Absolute path for live server
-
+            'extractor_args': {
+                'youtube': {
+                    # Forces yt-dlp to use iOS/Android clients instead of web, bypassing bot protection
+                    'player_client': ['ios', 'android'] 
+                }
+            }
         }
 
     else:
@@ -706,29 +699,20 @@ def download():
             "480",
             "360"
         ]:
-
             quality = "720"
 
-
         ydl_opts = {
-
             'format': 'b[ext=mp4]/b/best',
-
-            'outtmpl': os.path.join(
-                DOWNLOAD_FOLDER,
-                '%(title)s.%(ext)s'
-            ),
-
+            'outtmpl': os.path.join(DOWNLOAD_FOLDER, '%(title)s.%(ext)s'),
             'restrictfilenames': True,
-
             'quiet': True,
-
             'noplaylist': True,
-            
             'source_address': '0.0.0.0',
-            
-            'cookiefile': COOKIE_FILE  # Absolute path for live server
-
+            'extractor_args': {
+                'youtube': {
+                    'player_client': ['ios', 'android']
+                }
+            }
         }
 
 
