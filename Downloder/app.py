@@ -18,12 +18,16 @@ import threading
 
 app = Flask(__name__)
 
+# ==========================================
+# ABSOLUTE PATH SETUP FOR LIVE SERVER
+# ==========================================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
 # DOWNLOAD FOLDER
 # ==========================================
-
-DOWNLOAD_FOLDER = "downloads"
+DOWNLOAD_FOLDER = os.path.join(BASE_DIR, "downloads")
 
 os.makedirs(
     DOWNLOAD_FOLDER,
@@ -691,7 +695,7 @@ def download():
             
             'source_address': '0.0.0.0',
             
-            'cookiefile': 'cookies.txt'  # <-- YAHAN COOKIES ADD KIYA HAI
+            'cookiefile': COOKIE_FILE  # Absolute path for live server
 
         }
 
@@ -723,7 +727,7 @@ def download():
             
             'source_address': '0.0.0.0',
             
-            'cookiefile': 'cookies.txt'  # <-- YAHAN BHI COOKIES ADD KIYA HAI
+            'cookiefile': COOKIE_FILE  # Absolute path for live server
 
         }
 
