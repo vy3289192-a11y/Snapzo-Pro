@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Snapzo Pro Downloader is a simple online video URL tool for authorized content. Explore YouTube, Instagram, Facebook, X and Snapchat video tools in one place."
+    >
+
+    <meta
+        name="keywords"
+        content="Snapzo Pro Downloader, online video downloader, video downloader, video URL downloader, YouTube video tools, Instagram video tools, Facebook video tools, X video tools, Snapchat video tools"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta
+        name="author"
+        content="Snapzo Pro Downloader"
+    >
+
+    <meta name="theme-color" content="#0b0b12">
+
+    <meta
+        name="googlebot"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:title"
+        content="Snapzo Pro Downloader"
+    >
+
+    <meta
+        property="og:description"
+        content="Simple online video URL tools for authorized content across YouTube, Instagram, Facebook, X and Snapchat."
+    >
+
+    <meta
+        property="og:site_name"
+        content="Snapzo Pro Downloader"
+    >
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Snapzo Pro Downloader"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Simple online video URL tools for authorized content across YouTube, Instagram, Facebook, X and Snapchat."
+    >
+
+    <link
+        rel="canonical"
+        href="{{ request.url_root.rstrip('/') }}/"
+    >
+
+    <title>Snapzo Pro Downloader — Online Video URL Tools</title>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Snapzo Pro Downloader",
+      "url": "{{ request.url_root.rstrip('/') }}/",
+      "description": "Simple online video URL tools for authorized content across multiple social platforms."
+    }
+    </script>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+
+<style>
+.footer-links {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 70px;
+}
+
+.footer-link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 120px;
+}
+
+.footer-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    opacity: .55;
+    margin-bottom: 3px;
+}
+
+.footer-link-group a {
+    display: block;
+}
+
+@media (max-width: 700px) {
+    .footer-links {
+        justify-content: flex-start;
+        gap: 35px;
+        flex-wrap: wrap;
+    }
+}
+</style>
+
+
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="navbar">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="/"
+            class="logo"
+        >
+
+            <span class="logo-main">
+                Snapzo Pro
+            </span>
+
+            <span class="logo-light">
+                Downloader
+            </span>
+
+        </a>
+
+
+
+        <!-- DESKTOP MENU -->
+
+        <nav class="main-nav">
+
+
+            <a
+                href="/"
+                class="nav-link active"
+            >
+                Home
+            </a>
+
+
+           <div class="nav-dropdown">
+
+    <button type="button" class="nav-link nav-dropdown-button">
+        <span class="nav-icon youtube-icon">
+            ▶
+        </span>
+
+        YouTube
+
+        <span class="dropdown-arrow">⌄</span>
+    </button>
+
+    <div class="nav-dropdown-menu">
+
+        <a href="/youtube" class="nav-dropdown-item">
+            <span>🎬</span>
+            <span>
+                <strong>YouTube Video</strong>
+                <small>Video tools</small>
+            </span>
+        </a>
+
+        <a href="/youtube-mp3" class="nav-dropdown-item">
+            <span>🎵</span>
+            <span>
+                <strong>YouTube MP3</strong>
+                <small>Audio tools</small>
+            </span>
+        </a>
+
+    </div>
+
+</div>
+
+            <a
+                href="/instagram"
+                class="nav-link"
+            >
+                <span class="nav-icon instagram-icon">
+                    ◎
+                </span>
+
+                Instagram
+            </a>
+
+
+            <a
+                href="/facebook"
+                class="nav-link"
+            >
+                <span class="nav-icon facebook-icon">
+                    f
+                </span>
+
+                Facebook
+            </a>
+
+
+            <a
+                href="/x"
+                class="nav-link"
+            >
+                <span class="nav-icon x-icon">
+                    𝕏
+                </span>
+
+                X
+            </a>
+
+
+            <a
+                href="/snapchat"
+                class="nav-link"
+            >
+                <span class="nav-icon snapchat-icon">
+                    👻
+                </span>
+
+                Snapchat
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="nav-right">
+
+            <span class="secure-badge">
+                🔒 Secure
+            </span>
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =====================================
+             HERO
+        ====================================== -->
+
+        <section class="hero">
+
+
+            <!-- SMALL BADGE -->
+
+            <div class="hero-badge">
+
+                <span class="badge-dot"></span>
+
+                Fast • Simple • Easy
+
+            </div>
+
+
+
+            <!-- HEADING -->
+
+            <h1>
+
+                Download Videos
+
+                <br>
+
+                <span>
+                    Simply &amp; Easily.
+                </span>
+
+            </h1>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="hero-subtitle">
+
+                Paste your authorized video link,
+                choose your quality, and get started.
+
+            </p>
+
+
+
+            <!-- =================================
+                 URL BOX
+            ================================== -->
+
+            <div class="download-box">
+
+
+                <div class="input-wrapper">
+
+
+                    <span class="link-icon">
+                        🔗
+                    </span>
+
+
+                    <input
+                        type="url"
+                        id="videoUrl"
+                        placeholder="Paste video URL here..."
+                        autocomplete="off"
+                    >
+
+
+                    <button
+                        type="button"
+                        class="clear-btn"
+                        id="clearBtn"
+                        aria-label="Clear URL"
+                    >
+                        ×
+                    </button>
+
+
+                </div>
+
+
+
+                <button
+                    id="downloadBtn"
+                    class="check-button"
+                    type="button"
+                >
+
+                    <span>
+                        Check Link
+                    </span>
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+
+            <!-- =================================
+                 RESULT CARD
+            ================================== -->
+
+            <div
+                id="resultCard"
+                class="result-card"
+            >
+
+
+                <!-- THUMBNAIL -->
+
+                <div class="video-preview">
+
+
+                    <div class="thumbnail-wrapper">
+
+
+                        <img
+                            id="videoThumbnail"
+                            src=""
+                            alt="YouTube Video Thumbnail"
+                        >
+
+
+                        <div class="thumbnail-placeholder">
+
+                            <span>
+                                ▶
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- INFORMATION -->
+
+                <div class="result-info">
+
+
+                    <div class="video-platform">
+
+
+                        <span class="status-dot"></span>
+
+
+                        <span id="platformName">
+                            Platform detected
+                        </span>
+
+
+                    </div>
+
+
+
+                    <h3 id="videoTitle">
+
+                        Your video is ready
+
+                    </h3>
+
+
+
+                    <p
+                        id="videoDuration"
+                        class="video-duration"
+                    >
+
+                        Available after processing
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- QUALITY -->
+
+                <div class="quality-box">
+
+
+                    <label for="quality">
+                        Quality
+                    </label>
+
+
+                    <select id="quality">
+
+
+                        <option value="720">
+                            720p
+                        </option>
+
+
+                        <option value="480">
+                            480p
+                        </option>
+
+
+                        <option value="360">
+                            360p
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- DOWNLOAD -->
+
+                <button
+                    id="downloadVideoBtn"
+                    type="button"
+                    class="download-video-button"
+                >
+
+                    <span>
+                        Download
+                    </span>
+
+                    <span>
+                        ↓
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 QUICK PLATFORMS
+            ================================== -->
+
+            <div class="quick-platforms">
+
+
+                <a
+                    href="/youtube"
+                    class="quick-platform"
+                >
+
+                    <span class="quick-icon youtube-bg">
+                        ▶
+                    </span>
+
+                    <span>
+                        YouTube
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="/instagram"
+                    class="quick-platform"
+                >
+
+                    <span class="quick-icon instagram-bg">
+                        ◎
+                    </span>
+
+                    <span>
+                        Instagram
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="/facebook"
+                    class="quick-platform"
+                >
+
+                    <span class="quick-icon facebook-bg">
+                        f
+                    </span>
+
+                    <span>
+                        Facebook
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="/x"
+                    class="quick-platform"
+                >
+
+                    <span class="quick-icon x-bg">
+                        𝕏
+                    </span>
+
+                    <span>
+                        X
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="/snapchat"
+                    class="quick-platform"
+                >
+
+                    <span class="quick-icon snapchat-bg">
+                        👻
+                    </span>
+
+                    <span>
+                        Snapchat
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             TRUST STRIP
+        ========================================== -->
+
+        <section class="trust-strip">
+
+
+            <div class="trust-item">
+
+                <div class="trust-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <strong>
+                        Fast Processing
+                    </strong>
+
+                    <span>
+                        Quick link detection
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="trust-item">
+
+                <div class="trust-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Easy to Use
+                    </strong>
+
+                    <span>
+                        No complicated steps
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="trust-item">
+
+                <div class="trust-icon">
+                    🔒
+                </div>
+
+                <div>
+
+                    <strong>
+                        Privacy Focused
+                    </strong>
+
+                    <span>
+                        Simple and secure
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             HOW IT WORKS
+        ========================================== -->
+
+        <section
+            class="how"
+            id="how"
+        >
+
+
+            <div class="section-heading">
+
+
+                <span class="section-label">
+                    HOW IT WORKS
+                </span>
+
+
+                <h2>
+                    Three simple steps.
+                </h2>
+
+
+                <p class="section-text">
+
+                    Get your authorized content
+                    ready in just a few clicks.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="steps">
+
+
+                <!-- STEP 1 -->
+
+                <div class="step">
+
+
+                    <div class="step-top">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <span class="step-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div class="step-icon">
+                        🔗
+                    </div>
+
+
+                    <h3>
+                        Copy Link
+                    </h3>
+
+
+                    <p>
+
+                        Copy the URL of the video
+                        you are authorized to use.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- STEP 2 -->
+
+                <div class="step">
+
+
+                    <div class="step-top">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <span class="step-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div class="step-icon">
+                        📋
+                    </div>
+
+
+                    <h3>
+                        Paste Link
+                    </h3>
+
+
+                    <p>
+
+                        Paste the video URL into
+                        the Snapzo Pro Downloader box.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div class="step">
+
+
+                    <div class="step-top">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <span class="step-arrow">
+                            ✓
+                        </span>
+
+                    </div>
+
+
+                    <div class="step-icon">
+                        ⬇
+                    </div>
+
+
+                    <h3>
+                        Download
+                    </h3>
+
+
+                    <p>
+
+                        Choose an available quality
+                        and download your video.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             SUPPORTED PLATFORMS
+        ========================================== -->
+
+        <section
+            class="supported"
+            id="supported"
+        >
+
+
+            <div class="section-heading">
+
+
+                <span class="section-label">
+                    SUPPORTED PLATFORMS
+                </span>
+
+
+                <h2>
+                    One place. Multiple platforms.
+                </h2>
+
+
+                <p class="section-text">
+
+                    Select a platform to use its
+                    dedicated Snapzo Pro Downloader page.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="platform-grid">
+
+
+                <!-- YOUTUBE -->
+
+                <a
+                    href="/youtube"
+                    class="platform-card"
+                >
+
+
+                    <div class="platform-card-top">
+
+
+                        <div class="big-icon youtube-card-icon">
+                            ▶
+                        </div>
+
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+
+                    </div>
+
+
+                    <h3>
+                        YouTube
+                    </h3>
+
+
+                    <p>
+                        YouTube video tools
+                    </p>
+
+
+                </a>
+
+
+
+                <!-- INSTAGRAM -->
+
+                <a
+                    href="/instagram"
+                    class="platform-card"
+                >
+
+
+                    <div class="platform-card-top">
+
+
+                        <div class="big-icon instagram-card-icon">
+                            ◎
+                        </div>
+
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+
+                    </div>
+
+
+                    <h3>
+                        Instagram
+                    </h3>
+
+
+                    <p>
+                        Instagram video tools
+                    </p>
+
+
+                </a>
+
+
+
+                <!-- FACEBOOK -->
+
+                <a
+                    href="/facebook"
+                    class="platform-card"
+                >
+
+                    <div class="platform-card-top">
+
+                        <div class="big-icon facebook-card-icon">
+                            f
+                        </div>
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Facebook
+                    </h3>
+
+                    <p>
+                        Facebook video tools
+                    </p>
+
+                </a>
+
+
+                <!-- X -->
+
+                <a
+                    href="/x"
+                    class="platform-card"
+                >
+
+
+                    <div class="platform-card-top">
+
+
+                        <div class="big-icon x-card-icon">
+                            𝕏
+                        </div>
+
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+
+                    </div>
+
+
+                    <h3>
+                        X
+                    </h3>
+
+
+                    <p>
+                        X video tools
+                    </p>
+
+
+                </a>
+
+
+
+                <!-- SNAPCHAT -->
+
+                <a
+                    href="/snapchat"
+                    class="platform-card"
+                >
+
+
+                    <div class="platform-card-top">
+
+
+                        <div class="big-icon snapchat-card-icon">
+                            👻
+                        </div>
+
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+
+                    </div>
+
+
+                    <h3>
+                        Snapchat
+                    </h3>
+
+
+                    <p>
+                        Snapchat video tools
+                    </p>
+
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             FAQ
+        ========================================== -->
+
+        <section class="faq">
+
+
+            <div class="section-heading">
+
+
+                <span class="section-label">
+                    FAQ
+                </span>
+
+
+                <h2>
+                    Frequently asked questions.
+                </h2>
+
+
+            </div>
+
+
+
+            <div class="faq-list">
+
+
+                <details>
+
+
+                    <summary>
+                        How does Snapzo Pro Downloader work?
+                    </summary>
+
+
+                    <p>
+
+                        Paste a supported video URL,
+                        let Snapzo Pro identify the platform,
+                        and choose an available download
+                        option for authorized content.
+
+                    </p>
+
+
+                </details>
+
+
+
+                <details>
+
+
+                    <summary>
+                        Which platforms are available?
+                    </summary>
+
+
+                    <p>
+
+                        Snapzo Pro Downloader is being designed with
+                        dedicated pages for YouTube,
+                        Instagram, X and Snapchat.
+
+                    </p>
+
+
+                </details>
+
+
+
+                <details>
+
+
+                    <summary>
+                        Do I need to install an app?
+                    </summary>
+
+
+                    <p>
+
+                        No. Snapzo Pro is designed as a
+                        browser-based web experience.
+
+                    </p>
+
+
+                </details>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+
+        <div class="footer-inner">
+
+
+            <div class="footer-brand">
+
+
+                <div class="footer-logo">
+
+                    <span>
+                        Snapzo Pro
+                    </span>
+
+                    <span>
+                        Downloader
+                    </span>
+
+                </div>
+
+
+                <p>
+
+                    Simple video tools,
+                    made easy.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="footer-links">
+
+                <div class="footer-link-group">
+                    <span class="footer-group-title">PLATFORMS</span>
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <a href="/youtube">
+                        YouTube
+                    </a>
+
+                    <a href="/instagram">
+                        Instagram
+                    </a>
+
+                    <a href="/facebook">
+                        Facebook
+                    </a>
+
+                    <a href="/x">
+                        X
+                    </a>
+
+                    <a href="/snapchat">
+                        Snapchat
+                    </a>
+                </div>
+
+                <div class="footer-link-group">
+                    <span class="footer-group-title">LEGAL</span>
+
+                    <a href="/privacy">
+                        Privacy Policy
+                    </a>
+
+                    <a href="/terms">
+                        Terms of Service
+                    </a>
+
+                    <a href="/copyright">
+                        Copyright
+                    </a>
+
+                    <a href="/disclaimer">
+                        Disclaimer
+                    </a>
+
+                    <a href="/contact">
+                        Contact
+                    </a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+
+            <span>
+                © 2026 Snapzo Pro Downloader
+            </span>
+
+
+            <span>
+                Use only content you own or are authorized to download.
+            </span>
+
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+
+    <!-- =========================================
+         SMALL UI SCRIPT
+         (Clear button only)
+    ========================================== -->
+
+    <script>
+
+        const clearBtn =
+            document.getElementById("clearBtn");
+
+        const videoUrlInput =
+            document.getElementById("videoUrl");
+
+
+        if (clearBtn && videoUrlInput) {
+
+            clearBtn.addEventListener(
+                "click",
+                function () {
+
+                    videoUrlInput.value = "";
+
+                    videoUrlInput.focus();
+
+                }
+            );
+
+        }
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

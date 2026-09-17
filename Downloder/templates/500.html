@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>500 - Server Error | Vistan Downloader</title>
+    <meta name="description" content="Something went wrong on the server.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(255, 100, 100, 0.14), transparent 35%),
+                #070711;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            min-height: 70px;
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            background: rgba(7,7,17,0.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: 800;
+            white-space: nowrap;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #8b7cff;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .main-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            color: #aaaabd;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 9px 12px;
+            border-radius: 10px;
+            white-space: nowrap;
+            transition: 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.07);
+        }
+
+        /* ERROR CONTENT */
+        .error-content {
+            flex: 1;
+            width: 92%;
+            max-width: 850px;
+            margin: auto;
+            padding: 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .error-box {
+            width: 100%;
+            padding: 50px 30px;
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 28px;
+            background: rgba(255,255,255,0.035);
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.04);
+        }
+
+        .error-code {
+            font-size: clamp(90px, 17vw, 170px);
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -8px;
+            background: linear-gradient(135deg, #fff, #ff8d8d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+        }
+
+        .error-title {
+            font-size: clamp(26px, 5vw, 42px);
+            line-height: 1.15;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .error-text {
+            max-width: 580px;
+            margin: 0 auto 30px;
+            color: #a5a5b7;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 24px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #7566ff, #9b8fff);
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 12px 30px rgba(117,102,255,0.22);
+            transition: 0.2s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 35px rgba(117,102,255,0.32);
+        }
+
+        /* FOOTER */
+        .footer {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            background: rgba(0,0,0,0.18);
+        }
+
+        .footer-inner {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            color: #8f8fa1;
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #858596;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .navbar {
+                min-height: auto;
+                padding: 9px 10px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 7px;
+                overflow: hidden;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .main-nav {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                overflow-x: auto;
+                gap: 3px;
+                padding: 3px 0;
+            }
+
+            .nav-link {
+                flex: 0 0 auto;
+                padding: 8px 9px;
+                font-size: 11px;
+            }
+
+            .error-content {
+                width: 92%;
+                padding: 45px 0;
+            }
+
+            .error-box {
+                padding: 40px 18px;
+                border-radius: 22px;
+            }
+
+            .error-code {
+                font-size: 100px;
+                letter-spacing: -5px;
+            }
+
+            .error-title {
+                font-size: 28px;
+            }
+
+            .error-text {
+                font-size: 13px;
+            }
+
+            .home-button {
+                width: 100%;
+            }
+
+            .footer-inner {
+                width: 92%;
+                padding: 25px 0;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-links {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="error-page">
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            Vistan<span>Downloader</span>
+        </a>
+
+        <div class="main-nav">
+            <a href="/youtube" class="nav-link">YouTube</a>
+            <a href="/instagram" class="nav-link">Instagram</a>
+            <a href="/x" class="nav-link">X</a>
+            <a href="/snapchat" class="nav-link">Snapchat</a>
+            <a href="/facebook" class="nav-link">Facebook</a>
+        </div>
+
+    </nav>
+
+
+    <main class="error-content">
+
+        <div class="error-box">
+
+            <div class="error-code">500</div>
+
+            <h1 class="error-title">
+                Something Went Wrong
+            </h1>
+
+            <p class="error-text">
+                Something unexpected happened on our server.
+                Please try again in a moment. If the problem continues,
+                return to the homepage and try again.
+            </p>
+
+            <a href="/" class="home-button">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                © 2026 Vistan Downloader
+            </div>
+
+            <div class="footer-links">
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+                <a href="/copyright">Copyright</a>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+
+    </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Vistan Downloader</title>
+    <meta name="description" content="{{ description }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- ONE COMMON LEGAL UI: change this section once to update every legal page -->
+    <style>
+        .legal-page {
+            min-height: 65vh;
+            padding: 70px 20px 90px;
+        }
+
+        .legal-container {
+            width: min(1050px, 100%);
+            margin: 0 auto;
+        }
+
+        .legal-heading {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .legal-heading .section-label {
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .legal-heading h1 {
+            margin: 0 0 14px;
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.08;
+        }
+
+        .legal-heading p {
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.7;
+            opacity: .72;
+        }
+
+        .legal-card {
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.09);
+            border-radius: 24px;
+            padding: clamp(24px, 4vw, 42px);
+            box-shadow: 0 20px 60px rgba(0,0,0,.16);
+            backdrop-filter: blur(14px);
+        }
+
+        .legal-card h2 {
+            margin: 30px 0 10px;
+        }
+
+        .legal-card h2:first-child {
+            margin-top: 0;
+        }
+
+        .legal-card h3 {
+            margin: 22px 0 8px;
+        }
+
+        .legal-card p,
+        .legal-card li {
+            line-height: 1.75;
+            opacity: .82;
+        }
+
+        .legal-card ul {
+            padding-left: 22px;
+        }
+
+        .legal-meta {
+            font-size: 13px;
+            opacity: .58;
+            margin-bottom: 28px;
+        }
+
+        .legal-note {
+            padding: 15px 16px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.08);
+            margin: 18px 0;
+        }
+
+        .legal-note strong {
+            opacity: .95;
+        }
+
+        .legal-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 30px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        .legal-nav a {
+            padding: 9px 13px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.08);
+            text-decoration: none;
+            transition: .2s ease;
+        }
+
+        .legal-nav a:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,.09);
+        }
+
+        .legal-footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 18px;
+            padding: 0 20px 28px;
+        }
+
+        .legal-footer-links a {
+            text-decoration: none;
+            opacity: .7;
+        }
+
+        .legal-footer-links a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width:700px) {
+            .legal-page {
+                padding: 45px 14px 65px;
+            }
+
+            .legal-card {
+                border-radius: 18px;
+                padding: 22px 18px;
+            }
+
+            .legal-heading {
+                margin-bottom: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="/" class="logo">
+        <span class="logo-main">Vistan</span>
+        <span class="logo-light">Downloader</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="/" class="nav-link">Home</a>
+
+        <a href="/youtube" class="nav-link">
+            <span class="nav-icon youtube-icon">▶</span>
+            YouTube
+        </a>
+
+        <a href="/instagram" class="nav-link">
+            <span class="nav-icon instagram-icon">◎</span>
+            Instagram
+        </a>
+
+        <a href="/facebook" class="nav-link">
+            <span class="nav-icon facebook-icon">f</span>
+            Facebook
+        </a>
+
+        <a href="/x" class="nav-link">
+            <span class="nav-icon x-icon">𝕏</span>
+            X
+        </a>
+
+        <a href="/snapchat" class="nav-link">
+            <span class="nav-icon snapchat-icon">👻</span>
+            Snapchat
+        </a>
+    </nav>
+
+    <div class="nav-right">
+        <span class="secure-badge">🔒 Secure</span>
+    </div>
+</header>
+
+<main class="legal-page">
+    <div class="legal-container">
+
+        <div class="legal-heading">
+            <span class="section-label">VISTAN DOWNLOADER</span>
+            <h1>{{ title }}</h1>
+            <p>{{ subtitle }}</p>
+        </div>
+
+        <article class="legal-card">
+            <div class="legal-meta">Last updated: 15 September 2026</div>
+
+            {% block content %}{% endblock %}
+
+            <div class="legal-nav">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/copyright">Copyright</a>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </article>
+
+    </div>
+</main>
+
+<div class="legal-footer-links">
+    <a href="/">Home</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="/copyright">Copyright</a>
+    <a href="/disclaimer">Disclaimer</a>
+    <a href="/contact">Contact</a>
+</div>
+
+<footer>
+    <div class="footer-bottom">
+        <span>© 2026 Vistan Downloader</span>
+        <span>Use only content you own or are authorized to download.</span>
+    </div>
+</footer>
+
+</body>
+</html>

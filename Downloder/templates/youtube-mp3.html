@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <meta name="description"
+        content="Snapzo Pro YouTube MP3 downloader and audio tool. Check supported YouTube links and prepare available M4A or MP3 audio options for content you own or are authorized to use.">
+
+    <meta name="keywords"
+        content="YouTube MP3 downloader, YouTube to MP3, YouTube MP3 converter, YouTube audio downloader, YouTube M4A downloader, MP3 downloader online, YouTube audio tool, Snapzo Pro">
+
+    <meta name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta name="googlebot"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta name="author" content="Snapzo Pro">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="YouTube MP3 Downloader Online - M4A & MP3 | Snapzo Pro">
+    <meta property="og:description" content="Snapzo Pro YouTube audio tools for supported links and authorized content. Explore available M4A and MP3 audio options.">
+    <meta property="og:site_name" content="Snapzo Pro">
+    <meta property="og:url" content="{{ request.url }}">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="YouTube MP3 Downloader Online - Snapzo Pro">
+    <meta name="twitter:description" content="YouTube audio tools for authorized content from Snapzo Pro.">
+
+    <link rel="canonical" href="{{ request.url_root.rstrip('/') }}/youtube-mp3">
+    <link rel="alternate" hreflang="en" href="{{ request.url_root.rstrip('/') }}/youtube-mp3">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "YouTube MP3 Downloader Online - M4A & MP3 | Snapzo Pro",
+      "url": "{{ request.url_root.rstrip('/') }}/youtube-mp3",
+      "description": "Snapzo Pro YouTube audio tools for supported links and authorized content.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Snapzo Pro",
+        "url": "{{ request.url_root.rstrip('/') }}/"
+      }
+    }
+    </script>
+
+    <title>YouTube MP3 Downloader Online - M4A & MP3 | Snapzo Pro</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+.footer-links {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 70px;
+}
+
+.footer-link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 120px;
+}
+
+.footer-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    opacity: .55;
+    margin-bottom: 3px;
+}
+
+.footer-link-group a {
+    display: block;
+}
+
+@media (max-width: 700px) {
+    .footer-links {
+        justify-content: flex-start;
+        gap: 35px;
+        flex-wrap: wrap;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="navbar">
+
+        <a href="/" class="logo">
+            <span class="logo-main">Snapzo Pro</span>
+            <span class="logo-light">Downloader</span>
+        </a>
+
+        <!-- DESKTOP MENU -->
+        <nav class="main-nav">
+
+            <a href="/" class="nav-link">
+                Home
+            </a>
+
+            <!-- YOUTUBE DROPDOWN FIXED -->
+            <div class="nav-dropdown">
+                <button type="button" class="nav-link active nav-dropdown-button">
+                    <span class="nav-icon youtube-icon">▶</span>
+                    YouTube
+                    <span class="dropdown-arrow">⌄</span>
+                </button>
+                
+                <div class="nav-dropdown-menu">
+                    <a href="/youtube" class="nav-dropdown-item">
+                        <span class="nav-dropdown-icon youtube-icon">▶</span>
+                        <span><strong>YouTube Video</strong><small>Video tool</small></span>
+                    </a>
+                    <a href="/youtube-mp3" class="nav-dropdown-item active-dropdown-item">
+                        <span class="nav-dropdown-icon youtube-icon">♪</span>
+                        <span><strong>YouTube MP3</strong><small>Audio tool</small></span>
+                    </a>
+                </div>
+            </div>
+
+            <a href="/instagram" class="nav-link">
+                <span class="nav-icon instagram-icon">◎</span>
+                Instagram
+            </a>
+
+            <a href="/facebook" class="nav-link">
+                <span class="nav-icon facebook-icon">f</span>
+                Facebook
+            </a>
+
+            <a href="/x" class="nav-link">
+                <span class="nav-icon x-icon">𝕏</span>
+                X
+            </a>
+
+            <a href="/snapchat" class="nav-link">
+                <span class="nav-icon snapchat-icon">👻</span>
+                Snapchat
+            </a>
+
+        </nav>
+
+        <div class="nav-right">
+            <span class="secure-badge">🔒 Secure</span>
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                YouTube • Audio • Simple
+            </div>
+
+            <h1>
+                YouTube MP3 Downloader
+                <br>
+                <span>M4A & MP3 Audio Tool.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Paste a supported YouTube video link
+                and prepare audio for supported content.
+            </p>
+
+
+            <!-- =================================
+                 URL BOX
+            ================================== -->
+
+            <div class="download-box">
+
+                <div class="input-wrapper">
+
+                    <span class="link-icon">🔗</span>
+
+                    <input
+                        type="url"
+                        id="mp3Url"
+                        placeholder="Paste YouTube URL here..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        class="clear-btn"
+                        id="clearMp3Btn"
+                        aria-label="Clear URL"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="check-button"
+                    id="mp3CheckBtn"
+                >
+                    <span>Check Link</span>
+                    <span class="button-arrow">→</span>
+                </button>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="mp3Message"
+                class="message"
+            ></div>
+
+
+            <!-- =================================
+                 MP3 RESULT CARD
+            ================================== -->
+
+            <div
+                id="mp3ResultCard"
+                class="result-card"
+                style="display:none;"
+            >
+
+                <div class="video-preview">
+
+                    <div class="thumbnail-wrapper">
+
+                        <img
+                            id="mp3Thumbnail"
+                            src=""
+                            alt="YouTube thumbnail"
+                        >
+
+                        <div class="thumbnail-placeholder">
+                            <span>▶</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-info">
+
+                    <div class="video-platform">
+
+                        <span class="status-dot"></span>
+
+                        <span id="mp3Platform">
+                            YouTube
+                        </span>
+
+                    </div>
+
+                    <h3 id="mp3Title">
+                        Your audio is ready
+                    </h3>
+
+                    <p
+                        id="mp3Duration"
+                        class="video-duration"
+                    >
+                        Audio format: M4A / MP3
+                    </p>
+
+                </div>
+
+
+                <div class="quality-box">
+
+                    <label for="mp3Quality">
+                        Audio Quality
+                    </label>
+
+                    <select id="mp3Quality">
+
+                        <option value="128">
+                            M4A / MP3 • 128 kbps
+                        </option>
+
+                        <option value="192">
+                            M4A / MP3 • 192 kbps
+                        </option>
+
+                        <option value="320">
+                            M4A / MP3 • 320 kbps
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="download-video-button"
+                    id="mp3DownloadBtn"
+                >
+                    <span>Download Audio</span>
+                    <span>↓</span>
+                </button>
+
+            </div>
+
+
+            <!-- =================================
+                 QUICK PLATFORMS
+            ================================== -->
+
+            <div class="quick-platforms">
+
+                <a href="/youtube" class="quick-platform">
+
+                    <span class="quick-icon youtube-bg">
+                        ▶
+                    </span>
+
+                    <span>YouTube Video</span>
+
+                </a>
+
+                <a href="/youtube-mp3" class="quick-platform">
+
+                    <span class="quick-icon youtube-bg">
+                        ♪
+                    </span>
+
+                    <span>YouTube Audio</span>
+
+                </a>
+
+                <a href="/instagram" class="quick-platform">
+
+                    <span class="quick-icon instagram-bg">
+                        ◎
+                    </span>
+
+                    <span>Instagram</span>
+
+                </a>
+
+                <a href="/facebook" class="quick-platform">
+
+                    <span class="quick-icon facebook-bg">
+                        f
+                    </span>
+
+                    <span>Facebook</span>
+
+                </a>
+
+                <a href="/x" class="quick-platform">
+
+                    <span class="quick-icon x-bg">
+                        𝕏
+                    </span>
+
+                    <span>X</span>
+
+                </a>
+
+                <a href="/snapchat" class="quick-platform">
+
+                    <span class="quick-icon snapchat-bg">
+                        👻
+                    </span>
+
+                    <span>Snapchat</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             INFO SECTION
+        ========================================== -->
+
+        <section class="info-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    YOUTUBE AUDIO
+                </span>
+
+                <h2>
+                    Simple audio workflow.
+                </h2>
+
+                <p class="section-text">
+                    Use this page for YouTube audio workflows
+                    involving content you own or are authorized to use.
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-top">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <span class="step-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <div class="step-icon">
+                        🔗
+                    </div>
+
+                    <h3>
+                        Copy Link
+                    </h3>
+
+                    <p>
+                        Copy the YouTube URL of the
+                        content you are authorized to use.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-top">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <span class="step-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <div class="step-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        Paste Link
+                    </h3>
+
+                    <p>
+                        Paste the URL into the
+                        YouTube Audio tool above.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-top">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <span class="step-arrow">
+                            ✓
+                        </span>
+
+                    </div>
+
+                    <div class="step-icon">
+                        ♪
+                    </div>
+
+                    <h3>
+                        Choose Audio
+                    </h3>
+
+                    <p>
+                        Select an available audio
+                        format for your authorized content.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    
+        <!-- =========================================
+             SUPPORTED PLATFORMS
+        ========================================== -->
+
+        <section
+            class="supported"
+            id="supported"
+        >
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    SUPPORTED PLATFORMS
+                </span>
+
+                <h2>
+                    One place. Multiple platforms.
+                </h2>
+
+                <p class="section-text">
+                    Select a platform to use its
+                    dedicated Snapzo Pro Downloader page.
+                </p>
+
+            </div>
+
+            <div class="platform-grid">
+
+                <!-- YOUTUBE -->
+
+                <a
+                    href="/youtube"
+                    class="platform-card"
+                >
+
+                    <div class="platform-card-top">
+
+                        <div class="big-icon youtube-card-icon">
+                            ▶
+                        </div>
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        YouTube
+                    </h3>
+
+                    <p>
+                        YouTube video tools
+                    </p>
+
+                </a>
+
+
+                <!-- INSTAGRAM -->
+
+                <a
+                    href="/instagram"
+                    class="platform-card"
+                >
+
+                    <div class="platform-card-top">
+
+                        <div class="big-icon instagram-card-icon">
+                            ◎
+                        </div>
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Instagram
+                    </h3>
+
+                    <p>
+                        Instagram video tools
+                    </p>
+
+                </a>
+
+
+                <!-- FACEBOOK -->
+
+                <a
+                    href="/facebook"
+                    class="platform-card"
+                >
+
+                    <div class="platform-card-top">
+
+                        <div class="big-icon facebook-card-icon">
+                            f
+                        </div>
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Facebook
+                    </h3>
+
+                    <p>
+                        Facebook video tools
+                    </p>
+
+                </a>
+
+
+                <!-- X -->
+
+                <a
+                    href="/x"
+                    class="platform-card"
+                >
+
+                    <div class="platform-card-top">
+
+                        <div class="big-icon x-card-icon">
+                            𝕏
+                        </div>
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        X
+                    </h3>
+
+                    <p>
+                        X video tools
+                    </p>
+
+                </a>
+
+
+                <!-- SNAPCHAT -->
+
+                <a
+                    href="/snapchat"
+                    class="platform-card"
+                >
+
+                    <div class="platform-card-top">
+
+                        <div class="big-icon snapchat-card-icon">
+                            👻
+                        </div>
+
+                        <span class="card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Snapchat
+                    </h3>
+
+                    <p>
+                        Snapchat video tools
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <span>
+                        Snapzo Pro
+                    </span>
+
+                    <span>
+                        Downloader
+                    </span>
+
+                </div>
+
+                <p>
+                    Simple video tools,
+                    made easy.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-link-group">
+                    <span class="footer-group-title">PLATFORMS</span>
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <a href="/youtube">
+                        YouTube
+                    </a>
+
+                    <a href="/instagram">
+                        Instagram
+                    </a>
+
+                    <a href="/facebook">
+                        Facebook
+                    </a>
+
+                    <a href="/x">
+                        X
+                    </a>
+
+                    <a href="/snapchat">
+                        Snapchat
+                    </a>
+                </div>
+
+                <div class="footer-link-group">
+                    <span class="footer-group-title">LEGAL</span>
+
+                    <a href="/privacy">
+                        Privacy Policy
+                    </a>
+
+                    <a href="/terms">
+                        Terms of Service
+                    </a>
+
+                    <a href="/copyright">
+                        Copyright
+                    </a>
+
+                    <a href="/disclaimer">
+                        Disclaimer
+                    </a>
+
+                    <a href="/contact">
+                        Contact
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Snapzo Pro Downloader
+            </span>
+
+            <span>
+                Use only content you own or are authorized to download.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         PAGE UI SCRIPT
+    ========================================== -->
+
+    <script>
+
+        const mp3Url =
+            document.getElementById("mp3Url");
+
+        const clearMp3Btn =
+            document.getElementById("clearMp3Btn");
+
+        const mp3CheckBtn =
+            document.getElementById("mp3CheckBtn");
+
+        const mp3Message =
+            document.getElementById("mp3Message");
+
+        const mp3ResultCard =
+            document.getElementById("mp3ResultCard");
+
+        // === NEW VARIABLES ADDED HERE ===
+        const mp3Thumbnail = 
+            document.getElementById("mp3Thumbnail");
+
+        const mp3Placeholder = 
+            document.querySelector(".thumbnail-placeholder");
+
+        const mp3Title = 
+            document.getElementById("mp3Title");
+
+        const mp3Duration = 
+            document.getElementById("mp3Duration");
+
+        const mp3Quality = 
+            document.getElementById("mp3Quality");
+
+        const mp3DownloadBtn = 
+            document.getElementById("mp3DownloadBtn");
+            
+        let activeMp3Url = "";
+
+
+        if (clearMp3Btn && mp3Url) {
+
+            clearMp3Btn.addEventListener(
+                "click",
+                function () {
+
+                    mp3Url.value = "";
+
+                    mp3Message.textContent = "";
+
+                    mp3ResultCard.style.display = "none";
+                    
+                    activeMp3Url = "";
+
+                    mp3Url.focus();
+
+                }
+            );
+
+        }
+
+
+        if (mp3CheckBtn && mp3Url) {
+
+            // === ASYNC FUNCTION ADDED FOR API ===
+            mp3CheckBtn.addEventListener(
+                "click",
+                async function () {
+
+                    const value =
+                        mp3Url.value.trim();
+
+                    if (!value) {
+
+                        mp3Message.textContent =
+                            "Please paste a YouTube URL.";
+
+                        return;
+                    }
+
+
+                    let parsedUrl;
+
+                    try {
+
+                        parsedUrl =
+                            new URL(value);
+
+                    } catch (error) {
+
+                        mp3Message.textContent =
+                            "Please enter a valid URL.";
+
+                        return;
+                    }
+
+
+                    const hostname =
+                        parsedUrl.hostname.toLowerCase();
+
+
+                    if (
+                        !hostname.includes("youtube.com") &&
+                        !hostname.includes("youtu.be")
+                    ) {
+
+                        mp3Message.textContent =
+                            "Please enter a valid YouTube URL.";
+
+                        return;
+                    }
+
+
+                    // === API FETCH LOGIC ADDED HERE ===
+                    mp3CheckBtn.disabled = true;
+                    const originalText = mp3CheckBtn.innerHTML;
+                    mp3CheckBtn.innerHTML = "<span>Checking...</span>";
+                    mp3Message.textContent = "Fetching audio details...";
+                    mp3ResultCard.style.display = "none";
+
+                    try {
+                        const response = await fetch("/api/check-url", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ url: value, active_page: "youtube-mp3" })
+                        });
+                        
+                        const data = await response.json();
+
+                        if (response.ok && data.success) {
+                            activeMp3Url = value;
+                            mp3Message.textContent = "✓ YouTube audio ready to download.";
+
+                            // Set Title & Duration
+                            if (data.video) {
+                                if (mp3Title) mp3Title.textContent = data.video.title || "YouTube Audio";
+                                if (mp3Duration) mp3Duration.textContent = (data.video.duration ? data.video.duration + " • " : "") + "Audio format: M4A / MP3";
+
+                                // Set Thumbnail
+                                if (data.video.thumbnail) {
+                                    if (mp3Thumbnail) {
+                                        mp3Thumbnail.src = data.video.thumbnail;
+                                        mp3Thumbnail.style.display = "block";
+                                    }
+                                    if (mp3Placeholder) mp3Placeholder.style.display = "none";
+                                } else {
+                                    if (mp3Thumbnail) mp3Thumbnail.style.display = "none";
+                                    if (mp3Placeholder) mp3Placeholder.style.display = "flex";
+                                }
+                            }
+                            
+                            mp3ResultCard.style.display = "flex";
+                        } else {
+                            mp3Message.textContent = "✕ " + (data.message || "Failed to fetch YouTube details.");
+                        }
+                    } catch (err) {
+                        mp3Message.textContent = "✕ Network error. Please try again.";
+                    } finally {
+                        mp3CheckBtn.disabled = false;
+                        mp3CheckBtn.innerHTML = originalText;
+                    }
+
+                }
+            );
+
+        }
+
+        // === DOWNLOAD BUTTON CLICK EVENT ADDED HERE ===
+        if (mp3DownloadBtn) {
+            mp3DownloadBtn.addEventListener(
+                "click",
+                async function () {
+                    
+                    if (!activeMp3Url) {
+                        mp3Message.textContent = "Please check a video URL first.";
+                        return;
+                    }
+
+                    mp3DownloadBtn.disabled = true;
+                    const originalBtnText = mp3DownloadBtn.innerHTML;
+                    mp3DownloadBtn.innerHTML = "<span>Converting...</span>";
+                    mp3Message.textContent = "Extracting & preparing audio file, please wait...";
+
+                    try {
+                        const response = await fetch("/api/download", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                url: activeMp3Url,
+                                quality: "mp3" // Forces the python server to extract audio
+                            })
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.success) {
+                            mp3Message.textContent = "✓ Audio download starting now!";
+                            window.location.href = data.download_url;
+                        } else {
+                            mp3Message.textContent = "✕ " + (data.message || "Audio download failed.");
+                        }
+                    } catch (err) {
+                        mp3Message.textContent = "✕ Download failed. Please check connection.";
+                    } finally {
+                        mp3DownloadBtn.disabled = false;
+                        mp3DownloadBtn.innerHTML = originalBtnText;
+                    }
+                }
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>
