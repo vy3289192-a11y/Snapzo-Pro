@@ -22,11 +22,12 @@ app = Flask(__name__)
 # ABSOLUTE PATH SETUP FOR LIVE SERVER
 # ==========================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
 # PROXY SETTINGS (TO BYPASS RENDER IP BAN)
 # ==========================================
-PROXY = "http://103.153.69.111:3128"
+PROXY = "http://103.153.69.111:3128" 
 
 # ==========================================
 # DOWNLOAD FOLDER
@@ -684,7 +685,7 @@ def download():
         
         ydl_opts = {
 
-            'format': 'bestaudio[ext=m4a]/bestaudio', # Strict Audio - No Video Fallback
+            'format': 'bestaudio',
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
@@ -697,13 +698,7 @@ def download():
 
             'noplaylist': True,
             
-            'source_address': '0.0.0.0',
-            
-            'extractor_args': {
-                'youtube': {
-                    'player_client': ['android', 'ios', 'web']
-                }
-            }
+            'source_address': '0.0.0.0'
 
         }
 
