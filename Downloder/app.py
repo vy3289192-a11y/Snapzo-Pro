@@ -684,7 +684,7 @@ def download():
         
         ydl_opts = {
 
-            'format': 'bestaudio/best', # Simplified format to guarantee it finds audio
+            'format': 'bestaudio[ext=m4a]/bestaudio', # Strict Audio - No Video Fallback
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
@@ -701,7 +701,7 @@ def download():
             
             'extractor_args': {
                 'youtube': {
-                    'player_client': ['android', 'ios', 'web'] # Ensures it doesn't get format-blocked
+                    'player_client': ['android', 'ios', 'web']
                 }
             }
 
@@ -709,9 +709,18 @@ def download():
 
     else:
 
+        if quality not in [
+            "720",
+            "480",
+            "360"
+        ]:
+
+            quality = "720"
+
+
         ydl_opts = {
 
-            'format': 'best', # Simplified format for best available video quality
+            'format': 'b[ext=mp4]/b/best', # Best Video Available
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
