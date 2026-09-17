@@ -25,6 +25,13 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
+# PROXY SETTINGS (TO BYPASS RENDER IP BAN)
+# ==========================================
+# यहाँ आप इंटरनेट से कोई भी फ्री प्रॉक्सी डाल सकते हैं।
+# उदाहरण: PROXY = "http://185.201.88.128:80"
+PROXY = "" 
+
+# ==========================================
 # DOWNLOAD FOLDER
 # ==========================================
 DOWNLOAD_FOLDER = os.path.join(BASE_DIR, "downloads")
@@ -731,6 +738,11 @@ def download():
 
         }
 
+    # ======================================
+    # APPLY PROXY IF SET
+    # ======================================
+    if PROXY:
+        ydl_opts['proxy'] = PROXY
 
     # ======================================
     # DOWNLOAD LOCALLY TO FORCE BROWSER
