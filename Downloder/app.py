@@ -675,7 +675,7 @@ def download():
     if is_audio:
         
         ydl_opts = {
-            # Only asking for audio, strictly no video fallback
+
             'format': 'bestaudio[ext=m4a]/bestaudio',
 
             'outtmpl': os.path.join(
@@ -689,7 +689,10 @@ def download():
 
             'noplaylist': True,
             
-            'source_address': '0.0.0.0'  # IPv4 to bypass timeout, but NO extractor_args restriction
+            'source_address': '0.0.0.0',
+            
+            'cookiefile': 'cookies.txt'  # <-- YAHAN COOKIES ADD KIYA HAI
+
         }
 
     else:
@@ -718,7 +721,10 @@ def download():
 
             'noplaylist': True,
             
-            'source_address': '0.0.0.0'
+            'source_address': '0.0.0.0',
+            
+            'cookiefile': 'cookies.txt'  # <-- YAHAN BHI COOKIES ADD KIYA HAI
+
         }
 
 
