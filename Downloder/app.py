@@ -22,12 +22,12 @@ app = Flask(__name__)
 # ABSOLUTE PATH SETUP FOR LIVE SERVER
 # ==========================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
 # PROXY SETTINGS (TO BYPASS RENDER IP BAN)
 # ==========================================
-# पुरानी प्रॉक्सी बंद हो गई है। यहाँ इंटरनेट से नई प्रॉक्सी डालें:
-PROXY = "http://ttntwmrs:4vvkdv9to7fv@31.59.20.176:6754"
+PROXY = "http://ttntwmrs:4vvkdv9to7fv@198.23.243.226:6361" 
 
 # ==========================================
 # DOWNLOAD FOLDER
@@ -685,7 +685,7 @@ def download():
         
         ydl_opts = {
 
-            'format': 'bestaudio/best',
+            'format': 'bestaudio',
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
@@ -698,7 +698,13 @@ def download():
 
             'noplaylist': True,
             
-            'source_address': '0.0.0.0'
+            'source_address': '0.0.0.0',
+
+            'extractor_args': {
+                'youtube': {
+                    'player_client': ['tv', 'mweb']
+                }
+            }
 
         }
 
@@ -728,7 +734,13 @@ def download():
 
             'noplaylist': True,
             
-            'source_address': '0.0.0.0'
+            'source_address': '0.0.0.0',
+
+            'extractor_args': {
+                'youtube': {
+                    'player_client': ['tv', 'mweb']
+                }
+            }
 
         }
 
