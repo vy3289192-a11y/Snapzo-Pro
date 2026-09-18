@@ -7,7 +7,7 @@ from flask import (
 )
 
 from urllib.parse import urlparse
-quests
+import requests
 import os
 import yt_dlp
 import time
