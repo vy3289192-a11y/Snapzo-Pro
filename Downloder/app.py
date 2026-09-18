@@ -6,11 +6,9 @@ from flask import (
     send_from_directory
 )
 
-from urllib.parse import urlparse, parse_qs
-
-import requests
+from urllib.parse import urlparse
+quests
 import os
-import re
 import yt_dlp
 import time
 import threading
@@ -69,10 +67,6 @@ _cleanup_thread.start()
 
 
 # ==========================================
-# YOUTUBE API KEY
-# ==========================================
-
-YOUTUBE_API_KEY ="AIzaSyAgxpv5ZcAzAQ7DSwbcr9FBvmzsm9bKsSo"
 
 
 # ==========================================
@@ -81,12 +75,6 @@ YOUTUBE_API_KEY ="AIzaSyAgxpv5ZcAzAQ7DSwbcr9FBvmzsm9bKsSo"
 
 PLATFORMS = {
 
-    "youtube": [
-        "youtube.com",
-        "www.youtube.com",
-        "m.youtube.com",
-        "youtu.be"
-    ],
 
     "instagram": [
         "instagram.com",
@@ -145,80 +133,6 @@ def detect_platform(url):
 
 
 # ==========================================
-# YOUTUBE VIDEO ID
-# ==========================================
-
-def get_youtube_video_id(url):
-
-    try:
-
-        parsed = urlparse(url)
-
-        hostname = (
-            parsed.netloc
-            .lower()
-            .split(":")[0]
-        )
-
-
-        if hostname == "youtu.be":
-
-            video_id = (
-                parsed.path
-                .strip("/")
-                .split("/")[0]
-            )
-
-            if video_id:
-
-                return video_id
-
-
-        if hostname in [
-            "youtube.com",
-            "www.youtube.com",
-            "m.youtube.com"
-        ]:
-
-            query = parse_qs(
-                parsed.query
-            )
-
-            video_id = query.get(
-                "v",
-                [None]
-            )[0]
-
-            if video_id:
-
-                return video_id
-
-
-            shorts_match = re.match(
-                r"^/shorts/([^/?]+)",
-                parsed.path
-            )
-
-            if shorts_match:
-
-                return shorts_match.group(1)
-
-
-            embed_match = re.match(
-                r"^/embed/([^/?]+)",
-                parsed.path
-            )
-
-            if embed_match:
-
-                return embed_match.group(1)
-
-
-        return None
-
-    except Exception:
-
-        return None
 
 
 # ==========================================
@@ -275,174 +189,6 @@ def format_duration(duration):
 
 
 # ==========================================
-# YOUTUBE METADATA
-# ==========================================
-
-def get_youtube_metadata(url):
-
-    video_id = get_youtube_video_id(
-        url
-    )
-
-
-    if not video_id:
-
-        return {
-            "success": False,
-            "message":
-                "Could not find YouTube video ID."
-        }
-
-
-    if not YOUTUBE_API_KEY:
-
-        return {
-            "success": False,
-            "message":
-                "YouTube API key is not configured."
-        }
-
-
-    api_url = (
-        "https://www.googleapis.com/"
-        "youtube/v3/videos"
-    )
-
-
-    params = {
-
-        "part":
-            "snippet,contentDetails",
-
-        "id":
-            video_id,
-
-        "key":
-            YOUTUBE_API_KEY
-
-    }
-
-
-    try:
-
-        response = requests.get(
-            api_url,
-            params=params,
-            timeout=10
-        )
-
-
-        data = response.json()
-
-
-        if response.status_code != 200:
-
-            return {
-                "success": False,
-                "message":
-                    "YouTube API request failed."
-            }
-
-
-        items = data.get(
-            "items",
-            []
-        )
-
-
-        if not items:
-
-            return {
-                "success": False,
-                "message":
-                    "YouTube video not found."
-            }
-
-
-        item = items[0]
-
-
-        snippet = item.get(
-            "snippet",
-            {}
-        )
-
-
-        content_details = item.get(
-            "contentDetails",
-            {}
-        )
-
-
-        thumbnails = snippet.get(
-            "thumbnails",
-            {}
-        )
-
-
-        thumbnail = None
-
-
-        if "maxres" in thumbnails:
-
-            thumbnail = thumbnails[
-                "maxres"
-            ]["url"]
-
-        elif "high" in thumbnails:
-
-            thumbnail = thumbnails[
-                "high"
-            ]["url"]
-
-        elif "medium" in thumbnails:
-
-            thumbnail = thumbnails[
-                "medium"
-            ]["url"]
-
-        elif "default" in thumbnails:
-
-            thumbnail = thumbnails[
-                "default"
-            ]["url"]
-
-
-        return {
-
-            "success": True,
-
-            "title":
-                snippet.get(
-                    "title",
-                    "YouTube Video"
-                ),
-
-            "duration":
-                format_duration(
-                    content_details.get(
-                        "duration"
-                    )
-                ),
-
-            "thumbnail":
-                thumbnail
-
-        }
-
-
-    except requests.RequestException:
-
-        return {
-            "success": False,
-            "message":
-                "Could not connect to YouTube."
-        }
-
-@app.route("/youtube-mp3")
-def youtube_mp3():
-    return render_template("youtube-mp3.html")
-
 
 # ==========================================
 # HOME
@@ -520,51 +266,6 @@ def check_url():
         }), 400
 
 
-    # YouTube metadata only
-
-    if platform == "youtube":
-
-        metadata = get_youtube_metadata(
-            url
-        )
-
-
-        if metadata["success"]:
-
-            return jsonify({
-
-                "success": True,
-
-                "platform":
-                    platform,
-
-                "message":
-                    "YouTube video found successfully.",
-
-                "video": {
-
-                    "title":
-                        metadata["title"],
-
-                    "duration":
-                        metadata["duration"],
-
-                    "thumbnail":
-                        metadata["thumbnail"]
-
-                }
-
-            })
-
-
-        return jsonify({
-
-            "success": False,
-
-            "message":
-                metadata["message"]
-
-        }), 400
 
 
     return jsonify({
@@ -796,10 +497,6 @@ def serve_file(filename):
 # ==========================================
 # PLATFORM PAGES
 # ==========================================
-
-@app.route("/youtube")
-def youtube_page():
-    return render_template("youtube.html")
 
 
 @app.route("/instagram")
