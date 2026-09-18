@@ -22,11 +22,11 @@ app = Flask(__name__)
 # ABSOLUTE PATH SETUP FOR LIVE SERVER
 # ==========================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
 # PROXY SETTINGS (TO BYPASS RENDER IP BAN)
 # ==========================================
+# पुरानी प्रॉक्सी बंद हो गई है। यहाँ इंटरनेट से नई प्रॉक्सी डालें:
 PROXY = "http://103.153.69.111:3128" 
 
 # ==========================================
@@ -685,7 +685,7 @@ def download():
         
         ydl_opts = {
 
-            'format': 'bestaudio',
+            'format': 'bestaudio/best',
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
@@ -715,7 +715,7 @@ def download():
 
         ydl_opts = {
 
-            'format': 'b[ext=mp4]/b/best', # Best Video Available
+            'format': 'best', 
 
             'outtmpl': os.path.join(
                 DOWNLOAD_FOLDER,
