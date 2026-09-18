@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # PROXY SETTINGS (TO BYPASS RENDER IP BAN)
 # ==========================================
 # पुरानी प्रॉक्सी बंद हो गई है। यहाँ इंटरनेट से नई प्रॉक्सी डालें:
-PROXY = "http://103.153.69.111:3128" 
+PROXY = "http://ttntwmrs:4vvkdv9to7fv@31.59.20.176:6754"
 
 # ==========================================
 # DOWNLOAD FOLDER
