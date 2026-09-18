@@ -25,11 +25,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COOKIE_FILE = os.path.join(BASE_DIR, "cookies.txt")
 
 # ==========================================
-# PROXY SETTINGS (TO BYPASS RENDER IP BAN)
-# ==========================================
-PROXY = "http://ttntwmrs:4vvkdv9to7fv@198.23.243.226:6361" 
-
-# ==========================================
 # DOWNLOAD FOLDER
 # ==========================================
 DOWNLOAD_FOLDER = os.path.join(BASE_DIR, "downloads")
@@ -684,28 +679,13 @@ def download():
     if is_audio:
         
         ydl_opts = {
-
             'format': 'bestaudio',
-
-            'outtmpl': os.path.join(
-                DOWNLOAD_FOLDER,
-                '%(title)s.%(ext)s'
-            ),
-
+            'outtmpl': os.path.join(DOWNLOAD_FOLDER, '%(title)s.%(ext)s'),
             'restrictfilenames': True,
-
             'quiet': True,
-
             'noplaylist': True,
-            
             'source_address': '0.0.0.0',
-
-            'extractor_args': {
-                'youtube': {
-                    'player_client': ['tv', 'mweb']
-                }
-            }
-
+            'cookiefile': COOKIE_FILE # Cookies enabled here
         }
 
     else:
@@ -720,36 +700,15 @@ def download():
 
 
         ydl_opts = {
-
             'format': 'best', 
-
-            'outtmpl': os.path.join(
-                DOWNLOAD_FOLDER,
-                '%(title)s.%(ext)s'
-            ),
-
+            'outtmpl': os.path.join(DOWNLOAD_FOLDER, '%(title)s.%(ext)s'),
             'restrictfilenames': True,
-
             'quiet': True,
-
             'noplaylist': True,
-            
             'source_address': '0.0.0.0',
-
-            'extractor_args': {
-                'youtube': {
-                    'player_client': ['tv', 'mweb']
-                }
-            }
-
+            'cookiefile': COOKIE_FILE # Cookies enabled here
         }
 
-
-    # ======================================
-    # APPLY PROXY IF SET
-    # ======================================
-    if PROXY:
-        ydl_opts['proxy'] = PROXY
 
     # ======================================
     # DOWNLOAD LOCALLY TO FORCE BROWSER
