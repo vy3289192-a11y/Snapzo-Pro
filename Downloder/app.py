@@ -682,6 +682,20 @@ def internal_server_error(error):
     ), 500
 
 
+
+# ==========================================
+# SEO FILES
+# ==========================================
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory(
+        BASE_DIR,
+        "sitemap.xml",
+        mimetype="application/xml"
+    )
+
+
 # ==========================================
 # START SERVER
 # ==========================================
