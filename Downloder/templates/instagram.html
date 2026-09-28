@@ -13,6 +13,16 @@
 
     <title>Instagram Video Downloader Online - Snapzo Pro</title>
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X32MG84V3F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-X32MG84V3F');
+    </script>
+
+
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='style.css') }}"
@@ -52,6 +62,27 @@
         flex-wrap: wrap;
     }
 }
+
+/* MOBILE HAMBURGER MENU */
+.mobile-menu-btn{display:none;width:44px;height:44px;flex:0 0 44px;align-items:center;justify-content:center;flex-direction:column;gap:5px;border:1px solid #e5e7eb;border-radius:12px;background:rgba(255,255,255,.9);box-shadow:0 5px 18px rgba(15,23,42,.06);cursor:pointer;transition:background .2s ease,box-shadow .2s ease}
+.mobile-menu-btn:hover{background:#fff;box-shadow:0 8px 22px rgba(15,23,42,.10)}
+.mobile-menu-btn span{width:19px;height:2px;border-radius:99px;background:#111827;transition:transform .25s ease,opacity .2s ease}
+.mobile-menu-btn.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mobile-menu-btn.active span:nth-child(2){opacity:0}
+.mobile-menu-btn.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:700px){
+.navbar{position:sticky;min-height:68px;padding:8px 14px;gap:10px}
+.logo{font-size:17px;flex:1;min-width:0}
+.main-nav{display:none;position:absolute;top:calc(100% + 8px);left:14px;right:14px;width:auto;max-width:none;padding:8px;flex-direction:column;align-items:stretch;gap:3px;overflow:visible;border:1px solid #e5e7eb;border-radius:16px;background:rgba(255,255,255,.97);box-shadow:0 18px 45px rgba(15,23,42,.14);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:1100}
+.main-nav.mobile-open{display:flex}
+.nav-link{width:100%;justify-content:flex-start;padding:12px 14px;font-size:13px;border-radius:11px}
+.nav-icon{display:inline-flex}
+.nav-right{display:none}
+.mobile-menu-btn{display:flex}
+.navbar.menu-open .mobile-menu-btn{background:#f8fafc}
+}
+@media(min-width:701px){.main-nav{display:flex}}
+
 </style>
 
     <meta name="keywords" content="Instagram video downloader, Instagram downloader, Instagram video download, Instagram downloader online, download Instagram videos, Instagram video tool, Instagram videos downloader, Snapzo Pro">
@@ -134,6 +165,13 @@
                 🔒 Secure
             </span>
         </div>
+
+
+        <!-- MOBILE MENU BUTTON -->
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn"
+                aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
 
     </header>
 
@@ -847,6 +885,42 @@
         src="{{ url_for('static', filename='script.js') }}"
     ></script>
 
+
+
+        /* Mobile hamburger menu */
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mainNav = document.querySelector(".main-nav");
+        const navbar = document.querySelector(".navbar");
+
+        if (mobileMenuBtn && mainNav) {
+            mobileMenuBtn.addEventListener("click", function () {
+                const isOpen = mainNav.classList.toggle("mobile-open");
+                mobileMenuBtn.classList.toggle("active", isOpen);
+                navbar.classList.toggle("menu-open", isOpen);
+                mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+                mobileMenuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+            });
+
+            mainNav.querySelectorAll(".nav-link").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    mainNav.classList.remove("mobile-open");
+                    mobileMenuBtn.classList.remove("active");
+                    navbar.classList.remove("menu-open");
+                    mobileMenuBtn.setAttribute("aria-expanded", "false");
+                    mobileMenuBtn.setAttribute("aria-label", "Open menu");
+                });
+            });
+
+            document.addEventListener("click", function (event) {
+                if (!navbar.contains(event.target)) {
+                    mainNav.classList.remove("mobile-open");
+                    mobileMenuBtn.classList.remove("active");
+                    navbar.classList.remove("menu-open");
+                    mobileMenuBtn.setAttribute("aria-expanded", "false");
+                    mobileMenuBtn.setAttribute("aria-label", "Open menu");
+                }
+            });
+        }
 
     <!-- CLEAR BUTTON -->
 
